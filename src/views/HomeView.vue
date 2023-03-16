@@ -1,10 +1,14 @@
 <script setup lang="ts">
 import Message from '@/components/Message.vue';
+import SignIn from '@/views/auth/SignIn.vue';
 
+const user = localStorage.getItem('user');
+console.log(user);
 </script>
 
 <template>
-  <main class="mainWrapper">
+  <SignIn v-if="user == null" />
+  <main class="mainWrapper" v-else>
     <section>
       <h6>Salon #1</h6>
       <h6>Salon #2</h6>

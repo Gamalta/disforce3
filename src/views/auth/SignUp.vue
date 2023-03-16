@@ -1,4 +1,6 @@
 <script lang="ts">
+import { PrismaClient } from '@prisma/client';
+
 export default {
   name: "SignUp",
   data(){
@@ -10,12 +12,26 @@ export default {
       }
     }
   },
+  methods:{
+    async signUp(){
+      const prisma = new PrismaClient();
+      const user = await prisma.user.create({
+        data: {
+            email: this.user.email,
+            name: this.user.username,
+            password: this.user.password
+        }
+      })
+      localStorage.setItem('username', user.name ?? '')
+    }
+  },
 }
+
 </script>
 
 <template>
   <h2> Inscription </h2>
-  <form>
+  <form @submit.prevent="signUp">
     <div>
       <label for="username">Pseudo</label>
       <input type="text" id="username" v-model="user.username">

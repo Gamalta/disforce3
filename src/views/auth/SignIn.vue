@@ -1,4 +1,8 @@
 <script lang="ts">
+import { PrismaClient } from '@prisma/client';
+
+
+
 export default {
   name: 'SignIn',
   data(){
@@ -10,8 +14,20 @@ export default {
     }
   },
   methods:{
-    singIn(){
-      console.log('test pause')
+    async signIn(){
+      const prisma = new PrismaClient();
+      const users = await prisma.user.findMany({
+        where: {
+          email: this.user.username,
+          password: this.user.password,
+        },
+      });
+
+      if(users.length != 1) {
+        return null;
+      }
+
+      localStorage.setItem('username', users[0].name ?? '');
     },
   }
 }
@@ -22,7 +38,7 @@ export default {
   <main>
     <h2>Bienvenue sur DisForce3</h2>
 
-    <form @submit.prevent="singIn">
+    <form @submit.prevent="signIn">
       <div>
         <label for="username">Pseudo</label>
         <input type="text" id="username" v-model="user.username">
