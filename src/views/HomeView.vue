@@ -38,12 +38,14 @@ import Message from '@/components/Message.vue';
 .mainWrapper {
   display: flex;
   flex-direction: row;
-  height: 100vh;
+  height: 304vh;
 }
 
 section {
   width: 15%;
   padding-right: 2rem;
+  margin-left: 10px;
+  margin-top: 80px;
 }
 
 main > div {
@@ -51,11 +53,15 @@ main > div {
 }
 
 h2 {
+  right: -560px;
   font-size: 2.6rem;
   font-weight: 500;
 }
 
 h6 {
   font-size: 2rem;
+  display: flex;
+  justify-content: space-around;
+  
 }
 </style>

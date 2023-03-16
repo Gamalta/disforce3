@@ -54,9 +54,10 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  margin: 0;
+  margin: 20px;
   position: relative;
   font-weight: normal;
+  
 }
 
 body {
@@ -71,4 +72,9 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+form div {
+  display: flex;
+  justify-content: center;
 }
