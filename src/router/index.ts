@@ -15,9 +15,14 @@ const router = createRouter({
       component: () => import('../views/ProfileView.vue')
     },
     {
-      path: '/login',
-      name: 'login',
-      component: () => import('../views/auth/LoginView.vue')
+      path: '/signin',
+      name: 'SignIn',
+      component: () => import('../views/auth/SignIn.vue')
+    },
+    {
+      path: '/signup',
+      name: 'SignUp',
+      component: () => import('../views/auth/SignUp.vue')
     },
     {
       path: '/:pathMatch(.*)*', redirect: '/'
