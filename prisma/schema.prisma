@@ -1,0 +1,42 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+  // https://neon.tech/docs/guides/prisma/#configure-a-shadow-database-for-prisma-migrate
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  email     String   @unique
+  name      String?
+  messages  Message[]
+}
+
+model Message {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  content   String?
+  author    User?    @relation(fields: [authorId], references: [id])
+  authorId  Int?
+  room    Room?      @relation(fields: [roomId], references: [id])
+  roomId  Int?
+}
+
+model Room {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  messages  Message[]
+}
+
+model test {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+}
